@@ -1,0 +1,15 @@
+namespace Application.Core.Identity.Users.Features;
+
+public class ForgotPasswordRequest
+{
+    public string Email { get; set; } = default!;
+}
+
+public class ForgotPasswordRequestValidator : CustomValidator<ForgotPasswordRequest>
+{
+    public ForgotPasswordRequestValidator() =>
+        RuleFor(p => p.Email).Cascade(CascadeMode.Stop)
+            .NotEmpty()
+            .EmailAddress()
+                .WithMessage("Endereço de email inválido.");
+}

@@ -1,38 +1,50 @@
-var builder = WebApplication.CreateBuilder(args);
+using Application;
 
-builder.Services.AddOpenApi();
+using Infrastructure;
+using Infrastructure.Logging;
 
-var app = builder.Build();
+using Scalar.AspNetCore;
 
-if (app.Environment.IsDevelopment())
+using Serilog;
+
+using Server;
+
+
+StaticLogger.EnsureInitialized();
+Log.Information("server booting up..");
+
+try
 {
-    app.MapOpenApi();
+    var builder = WebApplication.CreateBuilder(args);
+
+    builder
+        .AddApplication()
+        .AddInfratructure(builder.Configuration)
+        .AddServer();
+
+    var app = builder.Build();
+
+    if (app.Environment.IsDevelopment())
+    {
+        app.MapOpenApi();
+        app.MapScalarApiReference("api-docs");
+    }
+
+    app.UseInfrastructure(builder.Configuration);
+    await app.Services.InitializeDatabasesAsync();
+
+    app.UseHttpsRedirection();
+
+    await app.RunAsync();
 }
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
+catch (Exception ex)
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
+    StaticLogger.EnsureInitialized();
+    Log.Fatal(ex.Message, "unhandled exception");
+}
+finally
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
-
-app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    StaticLogger.EnsureInitialized();
+    Log.Information("server shutting down..");
+    await Log.CloseAndFlushAsync();
 }
