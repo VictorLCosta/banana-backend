@@ -1,7 +1,10 @@
 using Application.Reservations;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace Server.Controllers;
 
+[Authorize]
 public class ReservationsController : BaseApiController
 {
     [HttpGet("{id}")]

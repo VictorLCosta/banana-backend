@@ -130,7 +130,7 @@ public class ApplicationDbContextInitialiser(
                 UserName = adminUserName,
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
-                NormalizedEmail = "admin@gmail.com".ToUpperInvariant(),
+                NormalizedEmail = "admin@email.com".ToUpperInvariant(),
                 NormalizedUserName = adminUserName.ToUpperInvariant(),
                 IsActive = true
             };

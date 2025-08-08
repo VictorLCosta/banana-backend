@@ -1,7 +1,10 @@
 using Application.Rooms;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace Server.Controllers;
 
+[Authorize]
 public class RoomsController : BaseApiController
 {
     [HttpGet]

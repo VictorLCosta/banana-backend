@@ -9,7 +9,6 @@ using Serilog;
 
 using Server;
 
-
 StaticLogger.EnsureInitialized();
 Log.Information("server booting up..");
 
@@ -27,7 +26,13 @@ try
     if (app.Environment.IsDevelopment())
     {
         app.MapOpenApi();
-        app.MapScalarApiReference("api-docs");
+        app.MapScalarApiReference("api-docs", opt =>
+        {
+            opt.Title = "Banana API Documentation";
+            opt.Theme = ScalarTheme.BluePlanet;
+            opt.DefaultHttpClient = new(ScalarTarget.CSharp, ScalarClient.HttpClient);
+            opt.ShowSidebar = true;
+        });
     }
 
     app.UseInfrastructure(builder.Configuration);

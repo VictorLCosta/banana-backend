@@ -2,6 +2,7 @@ using Infrastructure.Auth;
 using Infrastructure.Cors;
 using Infrastructure.Logging;
 using Infrastructure.Middlewares;
+using Infrastructure.OpenApi;
 using Infrastructure.Persistence;
 using Infrastructure.RateLimit;
 using Infrastructure.SecurityHeaders;
@@ -39,6 +40,11 @@ public static class Extensions
         builder.Services.AddAuth(configuration);
 
         builder.Services.AddCorsPolicy(configuration);
+
+        builder.Services.AddOpenApi(options =>
+        {
+            options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+        });
 
         return builder;
     }
