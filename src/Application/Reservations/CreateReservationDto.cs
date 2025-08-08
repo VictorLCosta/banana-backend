@@ -1,6 +1,6 @@
-namespace Domain.Entities;
+namespace Application.Reservations;
 
-public class Reservation : BaseEntity
+public class CreateReservationDto : IDto
 {
     public string? Description { get; set; }
     public string ResponsibleName { get; set; } = string.Empty;
@@ -9,7 +9,5 @@ public class Reservation : BaseEntity
     public TimeOnly EndTime { get; set; }
     public bool CoffeeIncluded { get; set; }
     public int? CoffeePeopleCount { get; set; }
-
     public Guid RoomId { get; set; }
-    public Room Room { get; set; } = null!;
 }

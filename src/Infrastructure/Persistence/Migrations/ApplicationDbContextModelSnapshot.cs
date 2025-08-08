@@ -37,7 +37,6 @@ namespace Infrastructure.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<TimeOnly>("EndTime")
@@ -50,6 +49,10 @@ namespace Infrastructure.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateOnly>("ReservationDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ResponsibleName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("RoomId")

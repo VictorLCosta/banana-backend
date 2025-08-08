@@ -33,6 +33,9 @@ try
     app.UseInfrastructure(builder.Configuration);
     await app.Services.InitializeDatabasesAsync();
 
+    app.UseRouting();
+    app.MapControllers();
+
     app.UseHttpsRedirection();
 
     await app.RunAsync();

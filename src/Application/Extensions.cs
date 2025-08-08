@@ -1,5 +1,7 @@
 using System.Reflection;
 
+using MediatR;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,11 +15,7 @@ public static class Extensions
 
         builder
             .Services
-            .AddMediator(opt =>
-            {
-                opt.Namespace = "Application";
-                opt.ServiceLifetime = ServiceLifetime.Scoped;
-            })
+            .AddMediatR(assembly)
             .AddValidatorsFromAssembly(assembly, includeInternalTypes: true)
             .AddServices();
 

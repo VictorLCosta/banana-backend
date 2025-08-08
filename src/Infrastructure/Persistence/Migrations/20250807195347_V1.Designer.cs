@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250807023557_V1")]
+    [Migration("20250807195347_V1")]
     partial class V1
     {
         /// <inheritdoc />
@@ -40,7 +40,6 @@ namespace Infrastructure.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<TimeOnly>("EndTime")
@@ -53,6 +52,10 @@ namespace Infrastructure.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateOnly>("ReservationDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ResponsibleName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("RoomId")

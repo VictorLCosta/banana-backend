@@ -1,3 +1,5 @@
+using MediatR;
+
 namespace Application.Core.Messaging;
 
 public interface ICommand : IRequest<Result>, IBaseCommand;

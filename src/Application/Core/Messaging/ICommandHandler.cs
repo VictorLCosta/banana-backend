@@ -1,3 +1,5 @@
+using MediatR;
+
 namespace Application.Core.Messaging;
 
 public interface ICommandHandler<in TCommand>
