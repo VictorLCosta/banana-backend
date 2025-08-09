@@ -1,7 +1,5 @@
 using Application.Core.Identity.Users.Abstractions;
 
-using Microsoft.AspNetCore.Http;
-
 namespace Infrastructure.Middlewares;
 
 public class CurrentUserMiddleware(ICurrentUserInitializer currentUserInitializer) : IMiddleware

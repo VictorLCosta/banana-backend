@@ -33,7 +33,7 @@ public partial class UserService(
             return currentUser.Adapt<UserDetailsDto>();
         }
 
-        return Result.Forbidden();
+        return Result.Forbidden("User not authenticated");
     }
 
     public async Task<Result<bool>> ExistsWithNameAsync(string name) => 

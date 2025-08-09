@@ -27,7 +27,7 @@ public class ApplicationPermissions
 {
     private static readonly ApplicationPermission[] _allPermissions = 
     [
-        new("View Myself", AppAction.View, AppResource.Users, true),
+        new("View Myself", AppAction.View, AppResource.Users),
         new("View Users", AppAction.View, AppResource.Users),
         new("Search Users", AppAction.Search, AppResource.Users),
         new("Create User", AppAction.Create, AppResource.Users),

@@ -108,8 +108,8 @@ public class TokenService(UserManager<ApplicationUser> userManager, IOptions<Jwt
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Key)),
-            ValidateIssuer = true,
-            ValidateAudience = true,
+            ValidateIssuer = false,
+            ValidateAudience = false,
             RoleClaimType = ClaimTypes.Role,
             ClockSkew = TimeSpan.Zero,
             ValidateLifetime = false

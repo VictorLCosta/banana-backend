@@ -3,7 +3,7 @@ using Application.Core.Identity.Tokens.Features;
 
 using Microsoft.AspNetCore.Authorization;
 
-namespace Server.Controllers.Identity;
+namespace Server.Controllers;
 
 public class TokensController(ITokenService tokenService) : BaseApiController
 {

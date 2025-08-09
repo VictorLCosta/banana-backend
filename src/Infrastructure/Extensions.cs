@@ -51,14 +51,13 @@ public static class Extensions
 
     public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app, IConfiguration configuration) =>
         app
-            .UseStaticFiles()
-            .UseSecurityHeaders()
             .UseRouting()
+            .UseAuthentication()
+            .UseAuthorization()
+            .UseSecurityHeaders()
             .UseCorsPolicy()
             .UseRateLimit()
-            .UseMiddlewares()
-            .UseAuthentication()
-            .UseAuthorization();
+            .UseMiddlewares();
     
     public static async Task InitializeDatabasesAsync(this IServiceProvider services, CancellationToken cancellationToken = default)
     {

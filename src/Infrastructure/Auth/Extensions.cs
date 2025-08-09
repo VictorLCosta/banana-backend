@@ -24,6 +24,7 @@ internal static class Extensions
         services
             .AddScoped<CurrentUserMiddleware>()
             .AddScoped<ICurrentUser, CurrentUser>()
+            .AddHttpContextAccessor()
             .AddScoped(sp => (ICurrentUserInitializer)sp.GetRequiredService<ICurrentUser>());
 
     private static IServiceCollection AddPermissions(this IServiceCollection services) =>
