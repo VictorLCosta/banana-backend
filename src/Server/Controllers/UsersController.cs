@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Server.Controllers;
 
-[Authorize]
+[AllowAnonymous]
 public class UsersController(IUserService userService) : BaseApiController
 {
     [HttpGet("me")]
+    [AllowAnonymous]
     public async Task<Result<UserDetailsDto>> Me(CancellationToken cancellationToken)
     {
         return await userService.Me(cancellationToken);

@@ -31,10 +31,10 @@ public class ReservationsController : BaseApiController
         return result;
     }
 
-    [HttpPut]
-    public async Task<Result<ReservationDto>> UpdateReservation(UpdateReservationDto reservation)
+    [HttpPut("{id}")]
+    public async Task<Result<ReservationDto>> UpdateReservation(Guid id, [FromBody] UpdateReservationDto reservation)
     {
-        var result = await Mediator.Send(new UpdateReservationCommand(reservation));
+        var result = await Mediator.Send(new UpdateReservationCommand(id, reservation));
 
         return result;
     }

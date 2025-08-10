@@ -1,5 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
-
 namespace Application.Reservations;
 
 public class UpdateReservationCommandValidator : AbstractValidator<UpdateReservationCommand>
@@ -37,7 +35,7 @@ public class UpdateReservationCommandValidator : AbstractValidator<UpdateReserva
 
         var existsConflict = await _context.Reservations.AnyAsync(
             x => x.RoomId == reservation.RoomId &&
-            x.Id != command.Reservation.Id &&
+            x.Id != command.Id &&
             x.ReservationDate == reservation.ReservationDate &&
             reservation.StartTime < x.EndTime &&
             reservation.EndTime > x.StartTime,

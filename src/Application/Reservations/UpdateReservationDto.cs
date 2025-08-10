@@ -2,7 +2,6 @@ namespace Application.Reservations;
 
 public class UpdateReservationDto : IDto
 {
-    public Guid Id { get; set; }
     public string? Description { get; set; }
     public string ResponsibleName { get; set; } = string.Empty;
     public DateOnly ReservationDate { get; set; }
